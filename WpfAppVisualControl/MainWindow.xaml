@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfAppVisualControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppVisualControl"
+        mc:Ignorable="d" x:Name="window01"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:Users x:Key="users"/>
+        <local:VisibleConverter x:Key="visibleConverter"/>
+        <local:App x:Key="app"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+           
+        </Grid.RowDefinitions>
+        <StackPanel >
+            <TextBlock Text="Построение интерфейса в зависимости от роли пользователя"
+                       FontSize="24" Foreground="Maroon"
+                       HorizontalAlignment="Center">
+                
+            </TextBlock>
+        <ComboBox Name="cbUsers" HorizontalAlignment="Center" Margin="0,40,0,0" 
+                  
+                  VerticalAlignment="Center" Width="276"  
+                  SelectionChanged="CbUsers_SelectionChanged"
+                  DisplayMemberPath="Name" ItemsSource="{StaticResource users}"
+                  />
+        <TextBlock x:Name="tbkUser" DataContext="{Binding ElementName=cbUsers, Path=SelectedValue}"
+                   Text="{Binding Path=RolleName}"
+                   HorizontalAlignment="Center"
+                   Margin="10"></TextBlock>
+        </StackPanel>
+       
+       
+    </Grid>
+</Window>
